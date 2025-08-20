@@ -13,11 +13,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call([
+            GraduateCategorySeeder::class,
+            StudyProgramSeeder::class,
+        ]);
 
+        // Create default admin user
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Admin User',
+            'email' => 'admin@ubudiyah.ac.id',
+            'role' => 'admin',
+        ]);
+
+        // Create test applicant
+        User::factory()->create([
+            'name' => 'Test Applicant',
+            'email' => 'applicant@example.com',
+            'role' => 'applicant',
+        ]);
+
+        // Create test assessor
+        User::factory()->create([
+            'name' => 'Test Assessor',
+            'email' => 'assessor@ubudiyah.ac.id',
+            'role' => 'assessor',
         ]);
     }
 }

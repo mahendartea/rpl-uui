@@ -21,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role',
         'password',
     ];
 
@@ -55,7 +56,31 @@ class User extends Authenticatable
         return Str::of($this->name)
             ->explode(' ')
             ->take(2)
-            ->map(fn ($word) => Str::substr($word, 0, 1))
+            ->map(fn($word) => Str::substr($word, 0, 1))
             ->implode('');
+    }
+
+    /**
+     * Get the applicant profile for this user
+     */
+    public function applicant()
+    {
+        return $this->hasOne(Applicant::class);
+    }
+
+    /**
+     * Get the assessor profile for this user
+     */
+    public function assessor()
+    {
+        return $this->hasOne(Assessor::class);
+    }
+
+    /**
+     * Get the application status histories changed by this user
+     */
+    public function statusChanges()
+    {
+        return $this->hasMany(ApplicationStatusHistory::class, 'changed_by');
     }
 }
