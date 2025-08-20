@@ -29,7 +29,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
+        if (!Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -48,7 +48,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
      */
     protected function ensureIsNotRateLimited(): void
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
 
@@ -69,59 +69,83 @@ new #[Layout('components.layouts.auth')] class extends Component {
      */
     protected function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
+        return Str::transliterate(Str::lower($this->email) . '|' . request()->ip());
     }
 }; ?>
 
-<div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Log in to your account')" :description="__('Enter your email and password below to log in')" />
+<div class="space-y-6">
+    <!-- Header -->
+    <div class="text-center">
+        <h2 class="text-2xl font-bold text-gray-900">Masuk ke Akun Anda</h2>
+        <p class="mt-2 text-sm text-gray-600">Masukkan email dan password untuk mengakses portal RPL</p>
+    </div>
 
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
 
-    <form method="POST" wire:submit="login" class="flex flex-col gap-6">
+    <form method="POST" wire:submit="login" class="space-y-6">
         <!-- Email Address -->
-        <flux:input
-            wire:model="email"
-            :label="__('Email address')"
-            type="email"
-            required
-            autofocus
-            autocomplete="email"
-            placeholder="email@example.com"
-        />
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                Alamat Email
+            </label>
+            <input wire:model="email" id="email" type="email" required autofocus autocomplete="email"
+                placeholder="email@example.com"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm @error('email') border-red-300 @enderror" />
+            @error('email')
+                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+            @enderror
+        </div>
 
         <!-- Password -->
-        <div class="relative">
-            <flux:input
-                wire:model="password"
-                :label="__('Password')"
-                type="password"
-                required
-                autocomplete="current-password"
-                :placeholder="__('Password')"
-                viewable
-            />
-
-            @if (Route::has('password.request'))
-                <flux:link class="absolute end-0 top-0 text-sm" :href="route('password.request')" wire:navigate>
-                    {{ __('Forgot your password?') }}
-                </flux:link>
-            @endif
+        <div>
+            <div class="flex items-center justify-between mb-2">
+                <label for="password" class="block text-sm font-medium text-gray-700">
+                    Password
+                </label>
+                @if (Route::has('password.request'))
+                    <a href="{{ route('password.request') }}"
+                        class="text-sm text-red-600 hover:text-red-500 transition duration-300" wire:navigate>
+                        Lupa password?
+                    </a>
+                @endif
+            </div>
+            <input wire:model="password" id="password" type="password" required autocomplete="current-password"
+                placeholder="Masukkan password"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm @error('password') border-red-300 @enderror" />
+            @error('password')
+                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- Remember Me -->
-        <flux:checkbox wire:model="remember" :label="__('Remember me')" />
+        <div class="flex items-center">
+            <input wire:model="remember" id="remember" type="checkbox"
+                class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded" />
+            <label for="remember" class="ml-2 block text-sm text-gray-700">
+                Ingat saya
+            </label>
+        </div>
 
-        <div class="flex items-center justify-end">
-            <flux:button variant="primary" type="submit" class="w-full">{{ __('Log in') }}</flux:button>
+        <!-- Submit Button -->
+        <div>
+            <button type="submit"
+                class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-300">
+                Masuk
+            </button>
         </div>
     </form>
 
+    <!-- Register Link -->
     @if (Route::has('register'))
-        <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
-            <span>{{ __('Don\'t have an account?') }}</span>
-            <flux:link :href="route('register')" wire:navigate>{{ __('Sign up') }}</flux:link>
+        <div class="text-center pt-4 border-t border-gray-200">
+            <p class="text-sm text-gray-600">
+                Belum punya akun RPL?
+                <a href="{{ route('register') }}"
+                    class="font-medium text-red-600 hover:text-red-500 transition duration-300" wire:navigate>
+                    Daftar sekarang
+                </a>
+            </p>
         </div>
     @endif
 </div>

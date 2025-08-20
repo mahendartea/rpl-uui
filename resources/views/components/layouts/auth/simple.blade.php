@@ -1,22 +1,58 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
-    <head>
-        @include('partials.head')
-    </head>
-    <body class="min-h-screen bg-white antialiased dark:bg-linear-to-b dark:from-neutral-950 dark:to-neutral-900">
-        <div class="bg-background flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
-            <div class="flex w-full max-w-sm flex-col gap-2">
-                <a href="{{ route('home') }}" class="flex flex-col items-center gap-2 font-medium" wire:navigate>
-                    <span class="flex h-9 w-9 mb-1 items-center justify-center rounded-md">
-                        <x-app-logo-icon class="size-9 fill-current text-black dark:text-white" />
-                    </span>
-                    <span class="sr-only">{{ config('app.name', 'Laravel') }}</span>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ $title ?? 'Masuk' }} - RPL Universitas Ubudiyah Indonesia</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Portal Login RPL Universitas Ubudiyah Indonesia. Akses sistem Rekognisi Pembelajaran Lampau untuk melanjutkan pendidikan Anda.">
+    <meta name="keywords" content="Login RPL UUI, Portal RPL, Universitas Ubudiyah Indonesia, RPL Login">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+
+<body class="min-h-screen bg-gray-50 antialiased">
+    <!-- Background Design -->
+    <div
+        class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gradient-to-br from-red-50 via-white to-red-50">
+        <!-- Header with Logo and Back to Home -->
+        <div class="w-full max-w-md">
+            <div class="text-center mb-6">
+                <a href="{{ route('home') }}" class="inline-flex items-center justify-center mb-4" wire:navigate>
+                    <img src="{{ asset('logouuinew.png') }}" alt="UUI Logo" class="h-12 w-auto">
                 </a>
-                <div class="flex flex-col gap-6">
+                <h1 class="text-2xl font-bold text-gray-900 mb-2">RPL Universitas Ubudiyah Indonesia</h1>
+                <p class="text-sm text-gray-600">Portal Rekognisi Pembelajaran Lampau</p>
+            </div>
+
+            <!-- Auth Card -->
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div class="bg-gradient-to-r from-red-600 to-red-700 h-2"></div>
+                <div class="p-6 sm:p-8">
                     {{ $slot }}
                 </div>
             </div>
+
+            <!-- Back to Home -->
+            <div class="text-center mt-6">
+                <a href="{{ route('home') }}" class="text-sm text-gray-600 hover:text-red-600 transition duration-300"
+                    wire:navigate>
+                    ← Kembali ke Beranda
+                </a>
+            </div>
         </div>
-        @fluxScripts
-    </body>
+    </div>
+    @fluxScripts
+</body>
+
 </html>
