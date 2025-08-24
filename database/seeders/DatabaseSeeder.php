@@ -16,27 +16,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             GraduateCategorySeeder::class,
             StudyProgramSeeder::class,
-        ]);
-
-        // Create default admin user
-        User::factory()->create([
-            'name' => 'Admin User',
-            'email' => 'admin@ubudiyah.ac.id',
-            'role' => 'admin',
-        ]);
-
-        // Create test applicant
-        User::factory()->create([
-            'name' => 'Test Applicant',
-            'email' => 'applicant@example.com',
-            'role' => 'applicant',
-        ]);
-
-        // Create test assessor
-        User::factory()->create([
-            'name' => 'Test Assessor',
-            'email' => 'assessor@ubudiyah.ac.id',
-            'role' => 'assessor',
+            RolePermissionSeeder::class, // This will create all users with proper roles
+            AssessorDataSeeder::class, // This will create assessor profile data
+            ApplicantSampleSeeder::class, // This will create sample applicant profiles
+            DocumentSampleSeeder::class, // This will create sample documents
+            ApplicationStatusSeeder::class, // This will create status histories
         ]);
     }
 }

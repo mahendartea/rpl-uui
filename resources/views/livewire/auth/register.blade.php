@@ -29,6 +29,9 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         event(new Registered(($user = User::create($validated))));
 
+        // Auto-assign applicant role to new users
+        $user->assignRole('applicant');
+
         Auth::login($user);
 
         $this->redirectIntended(route('dashboard', absolute: false), navigate: true);

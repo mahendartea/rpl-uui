@@ -1,12 +1,15 @@
 @extends('layouts.public')
 
 @section('title', 'Kontak - RPL Universitas Ubudiyah Indonesia')
-@section('description', 'Hubungi tim RPL Universitas Ubudiyah Indonesia. Alamat kampus, email rpl@uui.ac.id, telepon,
+@section('description',
+    'Hubungi tim RPL Universitas Ubudiyah Indonesia. Alamat kampus, email rpl@uui.ac.id, telepon,
     dan informasi kontak lengkap untuk semua program studi RPL.')
-@section('keywords', 'Kontak RPL UUI, Alamat UUI, Email RPL, Telepon UUI, Banda Aceh, rpl@uui.ac.id, Informasi Kontak,
+@section('keywords',
+    'Kontak RPL UUI, Alamat UUI, Email RPL, Telepon UUI, Banda Aceh, rpl@uui.ac.id, Informasi Kontak,
     Customer Service RPL')
 @section('og_title', 'Hubungi Kami - RPL UUI')
-@section('og_description', 'Ada pertanyaan tentang program RPL? Tim kami siap membantu Anda. Kontak langsung via email
+@section('og_description',
+    'Ada pertanyaan tentang program RPL? Tim kami siap membantu Anda. Kontak langsung via email
     rpl@uui.ac.id atau kunjungi kampus di Banda Aceh.')
 
 @section('content')
@@ -27,10 +30,10 @@
     <!-- Contact Information Section -->
     <div class="py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <!-- Contact Info -->
-                <div class="lg:col-span-1">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Informasi Kontak</h2>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-8">Informasi Kontak</h2>
 
                     <div class="space-y-6">
                         <div class="flex items-start space-x-4">
@@ -153,77 +156,48 @@
                     </div>
                 </div>
 
-                <!-- Contact Form -->
-                <div class="lg:col-span-2">
-                    <div class="bg-white p-8 rounded-xl shadow-sm border">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Kirim Pesan</h2>
-                        <form action="#" method="POST" class="space-y-6">
-                            @csrf
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nama
-                                        Lengkap *</label>
-                                    <input type="text" id="name" name="name" required
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition duration-200">
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email
-                                        *</label>
-                                    <input type="email" id="email" name="email" required
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition duration-200">
-                                </div>
+                <!-- Quick Contact Card -->
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-8">Hubungi Tim RPL</h2>
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-xl border border-red-200">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                    </path>
+                                </svg>
                             </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Tim RPL Siap Membantu</h3>
+                            <p class="text-gray-600 mb-6">Untuk informasi lengkap tentang program RPL, persyaratan, dan
+                                proses pendaftaran</p>
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Nomor
-                                        Telepon</label>
-                                    <input type="tel" id="phone" name="phone"
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition duration-200">
+                            <div class="space-y-4 mb-8">
+                                <div class="bg-white p-4 rounded-lg border border-red-200">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Email Khusus RPL</h4>
+                                    <a href="mailto:rpl@uui.ac.id"
+                                        class="text-red-600 hover:text-red-700 font-medium text-lg">
+                                        rpl@uui.ac.id
+                                    </a>
                                 </div>
-                                <div>
-                                    <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Topik
-                                        *</label>
-                                    <select id="subject" name="subject" required
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition duration-200">
-                                        <option value="">Pilih Topik</option>
-                                        <option value="general">Informasi Umum RPL</option>
-                                        <option value="requirements">Persyaratan Pendaftaran</option>
-                                        <option value="process">Proses Asesmen</option>
-                                        <option value="technical">Bantuan Teknis Website</option>
-                                        <option value="other">Lainnya</option>
-                                    </select>
+                                <div class="bg-white p-4 rounded-lg border border-red-200">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Telepon Langsung</h4>
+                                    <a href="tel:+6265175555566"
+                                        class="text-red-600 hover:text-red-700 font-medium text-lg">
+                                        (0651) 7555566
+                                    </a>
                                 </div>
                             </div>
 
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Pesan *</label>
-                                <textarea id="message" name="message" rows="6" required
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition duration-200"
-                                    placeholder="Tuliskan pertanyaan atau pesan Anda di sini..."></textarea>
-                            </div>
+                            <div class="text-sm text-gray-600">
+                                <p class="mb-2">📧 <strong>Untuk konsultasi via email:</strong></p>
+                                <p class="mb-4">Kirim pertanyaan Anda ke alamat email di atas dengan subjek yang jelas
+                                </p>
 
-                            <div class="flex items-start space-x-3">
-                                <input type="checkbox" id="privacy" name="privacy" required class="mt-1">
-                                <label for="privacy" class="text-sm text-gray-600">
-                                    Saya setuju dengan <a href="#" class="text-red-600 hover:text-red-700">kebijakan
-                                        privasi</a> dan <a href="#" class="text-red-600 hover:text-red-700">syarat &
-                                        ketentuan</a>
-                                    yang berlaku.
-                                </label>
+                                <p class="mb-2">📞 <strong>Untuk konsultasi telepon:</strong></p>
+                                <p>Senin-Jumat: 08:00-16:00 WIB | Sabtu: 08:00-12:00 WIB</p>
                             </div>
-
-                            <div>
-                                <button type="submit"
-                                    class="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 flex items-center justify-center">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                                    </svg>
-                                    Kirim Pesan
-                                </button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -235,83 +209,203 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    Kontak Fakultas & Program Studi
+                    Kontak Program Studi RPL
                 </h2>
-                <p class="text-lg text-gray-600">
-                    Hubungi langsung fakultas atau program studi yang diminati
+                <p class="text-lg text-gray-600 mb-8">
+                    Hubungi langsung koordinator program studi untuk informasi spesifik
                 </p>
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 max-w-4xl mx-auto">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-lg font-semibold text-blue-900 mb-2">Panduan Kontak Program Studi</h3>
+                            <p class="text-blue-800 text-sm">
+                                Untuk informasi spesifik tentang kurikulum, mata kuliah, dan persyaratan khusus program
+                                studi,
+                                silakan hubungi koordinator program studi yang Anda minati melalui kontak di bawah ini.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Faculty of Health -->
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Fakultas Kesehatan</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Fakultas Ilmu Kesehatan -->
+                <div
+                    class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Fakultas Ilmu Kesehatan</h3>
+                    </div>
                     <div class="space-y-4">
-                        <div>
-                            <h4 class="font-medium text-gray-900">D3 Kebidanan</h4>
-                            <p class="text-gray-600 text-sm">Email: rpl@uui.ac.id</p>
-                            <p class="text-gray-600 text-sm">Telp: (0651) 7555566 ext. 301</p>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-900 mb-2">📚 Program Diploma & Sarjana</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">D3 Kebidanan</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Aktif</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">D4 Kebidanan</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Aktif</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">S1 Ilmu Gizi</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Aktif</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">S1 Bidan Pendidik</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Aktif</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">S1 Kesehatan Masyarakat</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Aktif</span>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-medium text-gray-900">D4 Kebidanan</h4>
-                            <p class="text-gray-600 text-sm">Email: rpl@uui.ac.id</p>
-                            <p class="text-gray-600 text-sm">Telp: (0651) 7555566 ext. 302</p>
-                        </div>
-                        <div>
-                            <h4 class="font-medium text-gray-900">S1 Ilmu Gizi</h4>
-                            <p class="text-gray-600 text-sm">Email: rpl@uui.ac.id</p>
-                            <p class="text-gray-600 text-sm">Telp: (0651) 7555566 ext. 303</p>
-                        </div>
-                        <div>
-                            <h4 class="font-medium text-gray-900">S1 Bidan Pendidik</h4>
-                            <p class="text-gray-600 text-sm">Email: rpl@uui.ac.id</p>
-                            <p class="text-gray-600 text-sm">Telp: (0651) 7555566 ext. 304</p>
-                        </div>
-                        <div>
-                            <h4 class="font-medium text-gray-900">S1 Kesehatan Masyarakat</h4>
-                            <p class="text-gray-600 text-sm">Email: rpl@uui.ac.id</p>
-                            <p class="text-gray-600 text-sm">Telp: (0651) 7555566 ext. 305</p>
+                        <div class="pt-4 border-t border-gray-200">
+                            <div class="flex items-center space-x-4">
+                                <a href="mailto:rpl@uui.ac.id"
+                                    class="flex-1 bg-red-600 hover:bg-red-700 text-white text-center py-2 px-4 rounded-lg text-sm font-medium transition duration-300">
+                                    📧 Email
+                                </a>
+                                <a href="tel:+6265175555566"
+                                    class="flex-1 bg-green-600 hover:bg-green-700 text-white text-center py-2 px-4 rounded-lg text-sm font-medium transition duration-300">
+                                    📞 Telepon
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Faculty of Information Technology -->
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Fakultas Teknologi Informasi</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <h4 class="font-medium text-gray-900">S1 Sistem Informasi</h4>
-                            <p class="text-gray-600 text-sm">Email: rpl@uui.ac.id</p>
-                            <p class="text-gray-600 text-sm">Telp: (0651) 7555566 ext. 101</p>
+                <!-- Fakultas Farmasi -->
+                <div
+                    class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+                                </path>
+                            </svg>
                         </div>
-                        <div>
-                            <h4 class="font-medium text-gray-900">S1 Informatika</h4>
-                            <p class="text-gray-600 text-sm">Email: rpl@uui.ac.id</p>
-                            <p class="text-gray-600 text-sm">Telp: (0651) 7555566 ext. 102</p>
+                        <h3 class="text-xl font-bold text-gray-900">Fakultas Farmasi</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-900 mb-2">💊 Program Sarjana</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">S1 Farmasi</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Aktif</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-gray-200">
+                            <div class="flex items-center space-x-4">
+                                <a href="mailto:rpl@uui.ac.id"
+                                    class="flex-1 bg-red-600 hover:bg-red-700 text-white text-center py-2 px-4 rounded-lg text-sm font-medium transition duration-300">
+                                    📧 Email
+                                </a>
+                                <a href="tel:+6265175555566"
+                                    class="flex-1 bg-green-600 hover:bg-green-700 text-white text-center py-2 px-4 rounded-lg text-sm font-medium transition duration-300">
+                                    📞 Telepon
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Faculty of Pharmacy -->
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Fakultas Farmasi</h3>
+                <!-- Fakultas Sains dan Teknologi -->
+                <div
+                    class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Fakultas Sains dan Teknologi</h3>
+                    </div>
                     <div class="space-y-4">
-                        <div>
-                            <h4 class="font-medium text-gray-900">S1 Farmasi</h4>
-                            <p class="text-gray-600 text-sm">Email: rpl@uui.ac.id</p>
-                            <p class="text-gray-600 text-sm">Telp: (0651) 7555566 ext. 401</p>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-900 mb-2">💻 Program Teknologi Informasi</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">S1 Sistem Informasi</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Aktif</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">S1 Informatika</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Aktif</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-gray-200">
+                            <div class="flex items-center space-x-4">
+                                <a href="mailto:rpl@uui.ac.id"
+                                    class="flex-1 bg-red-600 hover:bg-red-700 text-white text-center py-2 px-4 rounded-lg text-sm font-medium transition duration-300">
+                                    📧 Email
+                                </a>
+                                <a href="tel:+6265175555566"
+                                    class="flex-1 bg-green-600 hover:bg-green-700 text-white text-center py-2 px-4 rounded-lg text-sm font-medium transition duration-300">
+                                    📞 Telepon
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Faculty of Teacher Training and Education -->
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Fakultas Keguruan dan Ilmu Pendidikan</h3>
+                <!-- Fakultas Sosial Sains dan Pendidikan -->
+                <div
+                    class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition duration-300 md:col-span-2 lg:col-span-1">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Fakultas Sosial Sains dan Pendidikan</h3>
+                    </div>
                     <div class="space-y-4">
-                        <div>
-                            <h4 class="font-medium text-gray-900">S1 Pendidikan Guru Sekolah Dasar</h4>
-                            <p class="text-gray-600 text-sm">Email: rpl@uui.ac.id</p>
-                            <p class="text-gray-600 text-sm">Telp: (0651) 7555566 ext. 501</p>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-900 mb-2">🎓 Program Pendidikan</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">S1 Pendidikan Guru Sekolah Dasar</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Aktif</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-gray-200">
+                            <div class="flex items-center space-x-4">
+                                <a href="mailto:rpl@uui.ac.id"
+                                    class="flex-1 bg-red-600 hover:bg-red-700 text-white text-center py-2 px-4 rounded-lg text-sm font-medium transition duration-300">
+                                    📧 Email
+                                </a>
+                                <a href="tel:+6265175555566"
+                                    class="flex-1 bg-green-600 hover:bg-green-700 text-white text-center py-2 px-4 rounded-lg text-sm font-medium transition duration-300">
+                                    📞 Telepon
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

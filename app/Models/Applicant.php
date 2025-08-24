@@ -21,6 +21,7 @@ class Applicant extends Model
         'graduate_category_id',
         'study_program_id',
         'application_status',
+        'motivation',
     ];
 
     protected function casts(): array
